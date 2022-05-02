@@ -1,0 +1,52 @@
+enum ColorType {
+   RED
+   BLUE
+   GREEN
+}
+
+type Query  {
+    "test string information"
+    test: String
+    "Return all the students in the database"
+    students:[Student]
+    "Return a single student in the db"
+    studentById(id:ID!):Student
+
+    "Query passing with arguments"
+    sayHello(name:String!):String
+
+    setFavouriteColor(color:ColorType):String
+
+}
+
+"Squema for the student information"
+type Student{
+    id:ID!
+    firstName:String
+    lastName: String
+    password: String
+    fullName:String
+    college:College
+
+}
+
+
+
+type College {
+   id:ID!
+   name:String
+   location:String
+   rating:Float
+}
+
+
+type Mutation {
+    createStudent(collegeId:ID, firstName:String, lastName:String):String
+    signUp(input:SignUpInput):String
+}
+
+input SignUpInput {
+    email: String!,
+    password: String!,
+    firstName: String!
+}
